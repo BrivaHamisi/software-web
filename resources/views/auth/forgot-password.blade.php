@@ -59,10 +59,6 @@
                         </a>
                     </div>
                 </div>
-
-                <footer class="mt-6 text-center text-sm text-gray-500">
-                    Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
-                </footer>
             </div>
         </div>
     </div>
