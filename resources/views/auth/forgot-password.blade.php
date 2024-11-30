@@ -36,8 +36,9 @@
                                 required 
                                 autofocus
                                 class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#FF2D20] focus:ring focus:ring-[#FF2D20]/20 focus:ring-opacity-50
-                                    @error('email') border-red-500 @enderror"
+                                    @error('email') border-red-500 @enderror" 
                             >
+                            {{-- The border red is alright since it is displayed on error --}}
                             @error('email')
                                 <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                             @enderror
