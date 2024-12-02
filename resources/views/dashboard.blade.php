@@ -230,26 +230,69 @@
 
                     {{-- Other sidebar sections would follow similar design principles --}}
                     {{-- User Growth Chart --}}
-                <div class="bg-white shadow-lg rounded-xl p-6">
-                    <h3 class="text-lg font-semibold mb-4 text-gray-800">User Growth</h3>
-                    <div class="flex items-center justify-between mb-4">
-                        <div>
-                            <p class="text-sm text-gray-500">Last 30 Days</p>
-                            <p class="text-2xl font-bold text-green-600">+{{ \App\Models\User::where('created_at', '>', now()->subDays(30))->count() }} Users</p>
+                    <div class="bg-white shadow-lg rounded-xl p-6">
+                        <h3 class="text-lg font-semibold mb-4 text-gray-800">User Growth</h3>
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <p class="text-sm text-gray-500">Last 30 Days</p>
+                                <p class="text-2xl font-bold text-green-600">+{{ \App\Models\User::where('created_at', '>', now()->subDays(30))->count() }} Users</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-green-600 text-sm inline-flex items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                    </svg>
+                                    12.5%
+                                </span>
+                            </div>
                         </div>
-                        <div class="text-right">
-                            <span class="text-green-600 text-sm inline-flex items-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                </svg>
-                                12.5%
-                            </span>
+                        <div class="h-48 w-full bg-gray-100 rounded-lg flex items-center justify-center">
+                            <canvas id="growthChart"></canvas>
                         </div>
                     </div>
-                    <div class="h-24 w-full bg-gray-100 rounded-lg flex items-center justify-center text-gray-500">
-                        {{ __('Growth Chart Placeholder') }}
-                    </div>
-                </div>
+
+                    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                <script>
+                    const ctx = document.getElementById('growthChart').getContext('2d');
+
+                    // Simulated data - Replace with actual data passed from your Laravel controller
+                    const labels = ['Week 1', 'Week 2', 'Week 3', 'Week 4'];
+                    const data = [50, 75, 100, 125]; // Replace with dynamic user data
+
+                    const growthChart = new Chart(ctx, {
+                        type: 'line', // Chart type
+                        data: {
+                            labels: labels, // X-axis labels
+                            datasets: [{
+                                label: 'New Users',
+                                data: data, // Y-axis data
+                                backgroundColor: 'rgba(75, 192, 192, 0.2)', // Line fill color
+                                borderColor: 'rgba(75, 192, 192, 1)', // Line color
+                                borderWidth: 2, // Line width
+                                tension:0.4,
+                            }]
+                        },
+                        options: {
+                            responsive: true, // Make chart responsive
+                            maintainAspectRatio: false, // Adjust to container size
+                            scales: {
+                                x: {
+                                    title: {
+                                        display: true,
+                                        text: 'Weeks', // X-axis label
+                                    }
+                                },
+                                y: {
+                                    beginAtZero: true, // Start Y-axis at 0
+                                    title: {
+                                        display: true,
+                                        text: 'Users', // Y-axis label
+                                    }
+                                }
+                            }
+                        }
+                    });
+                </script>
                 
                 {{-- User Roles Distribution --}}
                 <div class="bg-white shadow-lg rounded-xl p-6">
