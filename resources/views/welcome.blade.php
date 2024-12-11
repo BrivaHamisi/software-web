@@ -24,7 +24,7 @@
                             hover:before:w-full {{ request()->is('/') ? 'text-[#FF2D20] before:w-full' : '' }}">
                             Home
                         </a>
-                        <a href="#"
+                        <a href="/blogs"
                             class="relative group text-gray-700 hover:text-[#FF2D20] transition-colors font-medium 
                             before:absolute before:-bottom-2 before:left-0 before:w-0 before:h-0.5 before:bg-[#FF2D20] 
                             before:transition-all before:duration-300 
@@ -85,7 +85,7 @@
                             {{ request()->is('/') ? 'text-[#FF2D20] font-semibold' : '' }}">
                             Home
                         </a>
-                        <a href="#"
+                        <a href="/blogs"
                             class="block text-gray-700 hover:text-[#FF2D20] transition-colors font-medium">
                             Blogs
                         </a>
